@@ -2,6 +2,7 @@
 # Learning machine
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
+import matplotlib.pyplot as plt
 import csvparser as parser
 
 def loss(model, x, y):
@@ -67,5 +68,18 @@ def train(train_dataset):
 			print("Epoch {:03d}: Loss: {:.3f}, Accuracy: {:.3%}".format(epoch,
 										epoch_loss_avg.result(),
 										epoch_accuracy.result()))
-									
+		
+	# Visualize the loss function over time
+	fig, axes = plt.subplots(2, sharex=True, figsize=(12, 8))
+	fig.suptitle('Training Metrics')
+
+	axes[0].set_ylabel("Loss", fontsize=14)
+	axes[0].plot(train_loss_results)
+
+	axes[1].set_ylabel("Accuracy", fontsize=14)
+	axes[1].set_xlabel("Epoch", fontsize=14)
+	axes[1].plot(train_accuracy_results)
+
+	plt.show()	
+							
 	return model

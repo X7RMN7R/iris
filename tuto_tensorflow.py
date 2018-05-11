@@ -1,9 +1,6 @@
 # Python 3
 from __future__ import absolute_import, division, print_function
 
-import os
-import matplotlib.pyplot as plt
-
 import tensorflow as tf
 import tensorflow.contrib.eager as tfe
 
@@ -18,19 +15,6 @@ import learningmachine as lm
 
 # Create the training tf.data.Dataset
 model = lm.train(fm.train_dataset)
-
-# Visualize the loss function over time
-#fig, axes = plt.subplots(2, sharex=True, figsize=(12, 8))
-#fig.suptitle('Training Metrics')
-
-#axes[0].set_ylabel("Loss", fontsize=14)
-#axes[0].plot(train_loss_results)
-
-#axes[1].set_ylabel("Accuracy", fontsize=14)
-#axes[1].set_xlabel("Epoch", fontsize=14)
-#axes[1].plot(train_accuracy_results)
-
-#plt.show()
 
 test_dataset = fm.test_dataset
 test_dataset = test_dataset.skip(1)			# skip header row
